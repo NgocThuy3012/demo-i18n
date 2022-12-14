@@ -1,22 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const {t, i18n} = useTranslation();
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        
+        <button 
+          style={{ fontWeight: i18n.resolvedLanguage === 'vn' ? 'bold' : 'normal' }}
+          onClick={() => i18n.changeLanguage('vn')}
         >
-          Learn React
-        </a>
+          Vn
+        </button>
+        <button 
+          style={{ fontWeight: i18n.resolvedLanguage === 'en' ? 'bold' : 'normal' }}
+          onClick={() => i18n.changeLanguage('en')}
+        >
+          En
+        </button>
+        <div>
+          {t('welcome',{name: 'fet'})}
+        </div>
       </header>
     </div>
   );
